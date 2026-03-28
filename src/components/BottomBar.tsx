@@ -12,7 +12,7 @@ export default function BottomBar() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-3 flex items-center justify-between gap-6">
           <div className="min-w-0">
             <p className="text-sm text-white/80 truncate">
-              <span className="text-yellow-400 font-semibold">AlKhlaif Villas</span>
+              <span className="text-yellow-600 font-serif">AlKhlaif Villas</span>
               <span className="text-white/60"> — Interested in a viewing?</span>
             </p>
           </div>

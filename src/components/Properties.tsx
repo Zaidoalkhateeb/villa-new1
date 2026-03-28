@@ -148,7 +148,7 @@ export default function Properties() {
       {/* Title */}
       <div className="max-w-6xl mx-auto mb-12">
         <h2 className="text-4xl font-serif mb-4">
-          Exclusive <span className="text-yellow-400 italic">Properties</span>
+          Exclusive <span className="text-yellow-600 italic">Properties</span>
         </h2>
         <p className="text-neutral-600 max-w-xl">
           Discover our two distinctive villa models, each designed to provide an unmatched standard of living.

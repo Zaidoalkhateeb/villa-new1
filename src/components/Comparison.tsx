@@ -5,11 +5,11 @@ export default function Comparison() {
       {/* Header */}
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-3">
-          <span className="h-px w-10 sm:w-16 bg-yellow-400" />
-          <p className="text-yellow-400 text-xs tracking-[0.25em]">
+          <span className="h-px w-10 sm:w-16 bg-yellow-700" />
+          <p className="text-yellow-700 text-sm tracking-[0.25em]">
             Compare Villas
           </p>
-          <span className="h-px w-10 sm:w-16 bg-yellow-400" />
+          <span className="h-px w-10 sm:w-16 bg-yellow-700" />
         </div>
         <h2 className="text-3xl md:text-4xl font-serif">
           Side-by-Side Comparison
@@ -65,11 +65,7 @@ export default function Comparison() {
       </div>
 
       {/* Button */}
-      <div className="flex justify-center mt-10">
-        <button className="bg-yellow-500 text-black px-6 py-3 font-semibold tracking-wide hover:bg-yellow-400 transition">
-          INQUIRE ABOUT A VILLA →
-        </button>
-      </div>
+      
 
     </section>
   );

@@ -13,7 +13,7 @@ export default function Team() {
       imageSrc: "/Noor-Alayan.jpg",
     },
     {
-      name: "Abeer Omran",
+      name: "Abeer",
       role: "Sales Executive",
       desc: "Part of a distinguished sales team, providing premium residential consultations and ensuring an exceptional client experience from selection to handover.",
       imageSrc: "/Abeer-Omran.jpg",
@@ -33,10 +33,7 @@ export default function Team() {
   ] as const;
 
   const managingDirector = members.find((m) => m.role === "Managing Director") ?? members[0];
-  const salesMembers = members.filter((m) => m.role.toLowerCase().includes("sales"));
-  const otherMembers = members.filter(
-    (m) => m !== managingDirector && !m.role.toLowerCase().includes("sales"),
-  );
+  const nonManagingMembers = members.filter((m) => m !== managingDirector);
 
   const MemberCard = ({
     member,
@@ -61,7 +58,7 @@ export default function Team() {
 
       <div className="p-6">
         <h3 className="font-serif text-lg mb-1">{member.name}</h3>
-        <p className="text-yellow-400 text-xs tracking-wide mb-3">{member.role}</p>
+        <p className="text-yellow-600 font-serif text-xs tracking-wide mb-3">{member.role}</p>
         <p className="text-gray-400 text-sm leading-relaxed">{member.desc}</p>
       </div>
     </div>
@@ -73,7 +70,7 @@ export default function Team() {
       <div className="text-center mb-16">
         <div className="flex items-center justify-center gap-4 mb-3">
           <span className="h-px w-12 bg-yellow-400" />
-          <p className="text-yellow-400 text-xs tracking-[0.3em]">
+          <p className="text-yellow-600 font-serif text-xs tracking-[0.3em]">
             THE PEOPLE BEHIND IT
           </p>
           <span className="h-px w-12 bg-yellow-400" />
@@ -81,28 +78,16 @@ export default function Team() {
         <h2 className="text-4xl md:text-5xl font-serif">Our Team</h2>
       </div>
 
-      {/* Hierarchy layout */}
+      {/* Single-line grid layout */}
       <div className="max-w-6xl mx-auto">
-        {/* Top: Managing Director */}
         <div className="max-w-md mx-auto">
           <MemberCard member={managingDirector} />
         </div>
 
-        {/* Below: Sales (left) + Others (right) */}
-        <div className="mt-10 grid gap-8 lg:grid-cols-12 items-start">
-          <div className="lg:col-span-4 space-y-8">
-            {salesMembers.map((member) => (
-              <MemberCard key={member.name} member={member} />
-            ))}
-          </div>
-
-          <div className="lg:col-span-8">
-            <div className="grid sm:grid-cols-2 gap-8">
-              {otherMembers.map((member) => (
-                <MemberCard key={member.name} member={member} />
-              ))}
-            </div>
-          </div>
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-start">
+          {nonManagingMembers.map((member) => (
+            <MemberCard key={member.name} member={member} />
+          ))}
         </div>
       </div>
 

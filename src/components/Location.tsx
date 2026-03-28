@@ -8,14 +8,25 @@ export default function Location() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-stretch">
 
         {/* MAP */}
-        <div className="rounded-xl overflow-hidden border border-black/10 bg-white h-[240px] sm:h-[300px] md:h-[460px]">
+        <div className="relative rounded-xl overflow-hidden border border-black/10 bg-white h-[240px] sm:h-[300px] md:h-[460px]">
           <iframe
             title="Airport Road, Amman"
-            src="https://www.google.com/maps?q=Airport%20Road%20Amman&output=embed"
-            className="w-full h-full"
+            src="https://www.google.com/maps?q=Airport+Road,+Amman&hl=en&z=14&output=embed"
+            className="w-full h-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
           />
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Airport%20Road%2C%20Amman"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-3 left-3 rounded-lg border border-black/10 bg-white/90 px-3 py-2 text-xs text-neutral-700 backdrop-blur hover:bg-white transition"
+            aria-label="Open location in Google Maps"
+          >
+            Open in Google Maps
+          </a>
         </div>
 
         {/* TEXT CONTENT */}
@@ -25,15 +36,15 @@ export default function Location() {
 
           {/* Label */}
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-10 bg-yellow-400" />
-            <p className="text-yellow-400 text-xs tracking-[0.3em]">
+            <span className="h-px w-10 bg-yellow-600" />
+            <p className="text-yellow-600 text-sm tracking-[0.3em] font-serif font-semibold">
               WHY JORDAN
             </p>
-            <span className="h-px w-10 bg-yellow-400" />
+            <span className="h-px w-10 bg-yellow-600" />
           </div>
 
           {/* Title */}
-          <h2 className="text-4xl md:text-5xl font-serif mb-5 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-serif mb-5 leading-tight">
             The Prestige of Airport Road
           </h2>
 
@@ -54,7 +65,7 @@ export default function Location() {
           </div>
 
           {/* Stats Boxes */}
-          <div className="flex gap-6 mt-auto">
+          <div className="flex gap-6 mt-auto -mt-6">
 
             <div className="border border-black/10 bg-neutral-50 rounded-lg px-6 py-5">
               <h3 className="text-2xl text-yellow-600 font-serif mb-1">

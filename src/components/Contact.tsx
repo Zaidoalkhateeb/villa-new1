@@ -69,7 +69,7 @@ export default function Contact() {
         <div>
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-12 bg-yellow-400" />
-            <p className="text-yellow-600 text-xs tracking-[0.3em]">GET IN TOUCH</p>
+            <p className="text-yellow-600 font-serif text-xs tracking-[0.3em]">GET IN TOUCH</p>
             <span className="h-px w-12 bg-yellow-400" />
           </div>
 

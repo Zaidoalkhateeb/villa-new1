@@ -49,7 +49,7 @@ export default function Features() {
               100+
             </h2>
             <p className="text-neutral-600 text-xs tracking-[0.2em]">
-              HAPPY FAMILIES
+              SATISFIED<br/>FAMILIES
             </p>
           </div>
 
@@ -67,7 +67,8 @@ export default function Features() {
               100%
             </h2>
             <p className="text-neutral-600 text-xs tracking-[0.2em]">
-              PREMIUM FINISHES
+              PREMIUM<br/>
+              FINISHES
             </p>
           </div>
 
