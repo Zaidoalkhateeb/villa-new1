@@ -81,7 +81,9 @@ export default function Navbar() {
       <div className="flex items-center gap-6">
 
         {/* Phone */}
-        <div
+        <a
+          href="tel:+96265931620"
+          aria-label="Call +962 6 593 1620"
           className={
             "group flex items-center gap-2 text-sm cursor-pointer transition hover:text-yellow-500 hover:drop-shadow-[0_0_6px_rgba(234,179,8,0.45)] " +
             (isScrolled ? "text-neutral-700" : "text-white/85")
@@ -89,7 +91,7 @@ export default function Navbar() {
         >
         <Phone size={16} className={"transition group-hover:text-yellow-500 " + (isScrolled ? "text-neutral-500" : "text-white/70")} />
         <span>+962 6 593 1620</span>
-        </div>
+        </a>
 
         {/* Inquire Button (FIXED) */}
         <button className="border border-yellow-500 px-5 py-2 text-sm tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition">

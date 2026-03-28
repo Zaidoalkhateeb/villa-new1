@@ -64,7 +64,7 @@ export default function Comparison() {
 
       </div>
 
-      {/* Button */}
+    
       
 
     </section>
