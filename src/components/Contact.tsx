@@ -62,7 +62,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-neutral-100 text-neutral-900 py-24 px-6 scroll-mt-24"
+      className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6 scroll-mt-24"
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
         {/* Left */}
@@ -77,7 +77,7 @@ export default function Contact() {
             Register Your Interest
           </h2>
 
-          <p className="mt-5 text-neutral-600 leading-relaxed max-w-xl">
+          <p className="mt-5 text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-xl">
             Connect with our sales team to receive detailed brochures, floor plans,
             and exclusive viewing arrangements.
           </p>
@@ -85,14 +85,14 @@ export default function Contact() {
           <div className="mt-10 space-y-4">
             <a
               href="tel:+96265931620"
-              className="flex items-center gap-4 rounded-xl border border-black/10 bg-white px-5 py-4"
+              className="flex items-center gap-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 px-5 py-4"
               aria-label="Call +962 6 593 1620"
             >
               <div className="grid place-items-center h-11 w-11 rounded-xl bg-yellow-500/10 text-yellow-600 border border-yellow-500/20">
                 <Phone size={18} />
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.3em] text-neutral-500">PHONE</p>
+                <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">PHONE</p>
                 <p className="font-medium">+962 6 593 1620</p>
               </div>
             </a>
@@ -101,34 +101,34 @@ export default function Contact() {
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-xl border border-black/10 bg-white px-5 py-4 transition hover:border-green-500/40"
+              className="flex items-center gap-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 px-5 py-4 transition hover:border-green-500/40"
               aria-label="Open WhatsApp chat"
             >
               <div className="grid place-items-center h-11 w-11 rounded-xl bg-green-500/10 text-green-400 border border-green-500/20">
                 <MessageCircle size={18} />
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.3em] text-neutral-500">WHATSAPP</p>
+                <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">WHATSAPP</p>
                 <p className="font-medium">+962 796 033 600</p>
               </div>
             </a>
 
-            <div className="flex items-center gap-4 rounded-xl border border-black/10 bg-white px-5 py-4">
+            <div className="flex items-center gap-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 px-5 py-4">
               <div className="grid place-items-center h-11 w-11 rounded-xl bg-yellow-500/10 text-yellow-600 border border-yellow-500/20">
                 <Mail size={18} />
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.3em] text-neutral-500">EMAIL</p>
+                <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">EMAIL</p>
                 <p className="font-medium">sales@alkhlaif.com</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 rounded-xl border border-black/10 bg-white px-5 py-4">
+            <div className="flex items-center gap-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 px-5 py-4">
               <div className="grid place-items-center h-11 w-11 rounded-xl bg-yellow-500/10 text-yellow-600 border border-yellow-500/20">
                 <MapPin size={18} />
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.3em] text-neutral-500">OFFICE</p>
+                <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">OFFICE</p>
                 <p className="font-medium leading-snug">
                   7th Circle – Royal Jordanian Airlines Complex, 3rd Floor, Office No. 313
                 </p>

@@ -24,7 +24,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="bg-neutral-100 text-neutral-900 py-24 px-6">
+    <section className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6">
       <div className="max-w-6xl mx-auto mb-12">
         <div className="flex items-center justify-center gap-4 mb-3">
           <span className="h-px w-12 bg-yellow-600" />
@@ -40,17 +40,17 @@ export default function Testimonials() {
         {testimonials.map((item, i) => (
           <div
             key={i}
-            className="group relative bg-white border border-black/10 rounded-xl p-6 hover:border-yellow-500/70 transition-all duration-300 transform-gpu hover:-translate-y-1 hover:scale-[1.01]"
+            className="group relative bg-white dark:bg-neutral-900 border border-black/10 dark:border-white/10 rounded-xl p-6 hover:border-yellow-500/70 transition-all duration-300 transform-gpu hover:-translate-y-1 hover:scale-[1.01]"
           >
             <div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition group-hover:opacity-100 bg-yellow-500/5 blur-xl" />
 
             <div className="text-yellow-600 mb-4 tracking-wide">★★★★★</div>
 
-            <p className="text-neutral-700 text-sm leading-relaxed mb-6 relative z-10">
+            <p className="text-neutral-700 dark:text-neutral-200 text-sm leading-relaxed mb-6 relative z-10">
               “{item.text}”
             </p>
 
-            <div className="border-t border-black/10 pt-4 relative z-10">
+            <div className="border-t border-black/10 dark:border-white/10 pt-4 relative z-10">
               <div className="flex items-start gap-3">
                 <span className="mt-3 h-px w-8 bg-yellow-400/80 shrink-0" />
                 <div>

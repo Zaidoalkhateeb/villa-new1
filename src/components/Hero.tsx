@@ -112,7 +112,7 @@ export default function Hero() {
 
           {/* Primary Button */}
           <a
-            href="#gallery"
+            href="#properties"
             className="bg-yellow-500 text-black px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold tracking-wide hover:bg-yellow-400 transition shadow-[0_0_20px_rgba(250,204,21,0.2)]"
           >
             EXPLORE VILLAS

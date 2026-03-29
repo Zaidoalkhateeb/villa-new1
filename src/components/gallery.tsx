@@ -45,7 +45,7 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="bg-neutral-50 text-neutral-900 py-24 px-6 scroll-mt-24"
+      className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6 scroll-mt-24"
     >
 
       {/* Header */}
@@ -67,7 +67,7 @@ export default function Gallery() {
 
         {/* Large Left Image */}
         <div className="md:col-span-2">
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 bg-white h-[320px] sm:h-[380px] md:h-[520px]">
+          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[320px] sm:h-[380px] md:h-[520px]">
             <img
               src="/gallery-living.png"
               alt="Living area"
@@ -90,7 +90,7 @@ export default function Gallery() {
         {/* Right Column */}
         <div className="flex flex-col gap-6">
 
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 bg-white h-[200px] sm:h-[230px] md:h-[248px]">
+          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[200px] sm:h-[230px] md:h-[248px]">
             <img
               src="/gallery-kitchen.png"
               alt="Kitchen"
@@ -109,7 +109,7 @@ export default function Gallery() {
             </button>
           </div>
 
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 bg-white h-[200px] sm:h-[230px] md:h-[248px]">
+          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[200px] sm:h-[230px] md:h-[248px]">
             <img
               src="/gallery-master.png"
               alt="Master bedroom"
@@ -132,7 +132,7 @@ export default function Gallery() {
 
         {/* Bottom Full Image */}
         <div className="md:col-span-3">
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 bg-white h-[220px] sm:h-[260px] md:h-[320px]">
+          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[220px] sm:h-[260px] md:h-[320px]">
             <img
               src="/gallery-pool.png"
               alt="Pool"

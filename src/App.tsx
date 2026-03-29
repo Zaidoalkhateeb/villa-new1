@@ -15,7 +15,7 @@ import BottomBar from "./components/BottomBar";
 
 export default function App() {
   return (
-    <div className="bg-neutral-100 text-neutral-900 overflow-x-hidden pb-24">
+    <div className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 overflow-x-hidden pb-24">
       <Navbar />
       <Hero />
       <Features />
