@@ -2,6 +2,13 @@ import { Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getCurrentThemeFromDom, toggleTheme, type Theme } from "../theme";
 
+/**
+ * Top navigation bar.
+ *
+ * - Tracks scroll position for styling
+ * - Provides a theme toggle button
+ * - Listens to theme changes broadcast by `theme.ts`
+ */
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoImageOk, setLogoImageOk] = useState(true);
@@ -25,8 +32,6 @@ export default function Navbar() {
     };
 
     window.addEventListener("theme:change", onThemeChange as EventListener);
-    setTheme(getCurrentThemeFromDom());
-
     return () =>
       window.removeEventListener("theme:change", onThemeChange as EventListener);
   }, []);

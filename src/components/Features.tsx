@@ -1,5 +1,15 @@
 import { Home, Sparkles, ShieldCheck, TreePalm, MapPin, CheckCircle } from "lucide-react";
 
+const TOP_FEATURES = [
+  { icon: <Home size={22} />, text: "Modern Architecture" },
+  { icon: <Sparkles size={22} />, text: "Premium Finishes" },
+  { icon: <ShieldCheck size={22} />, text: "Reliable Delivery" },
+  { icon: <TreePalm size={22} />, text: "Luxury Outdoor Spaces" },
+  { icon: <MapPin size={22} />, text: "Prime Location" },
+  { icon: <CheckCircle size={22} />, text: "Turnkey Ready" },
+] as const;
+
+/** Highlights and quick stats strip under the hero. */
 export default function Features() {
   return (
     <section className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
@@ -7,14 +17,7 @@ export default function Features() {
       {/* TOP FEATURES */}
       <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-2 py-12 px-4 sm:px-6 border-b border-black/10 dark:border-white/10">
 
-        {[
-          { icon: <Home size={22} />, text: "Modern Architecture" },
-          { icon: <Sparkles size={22} />, text: "Premium Finishes" },
-          { icon: <ShieldCheck size={22} />, text: "Reliable Delivery" },
-          { icon: <TreePalm size={22} />, text: "Luxury Outdoor Spaces" },
-          { icon: <MapPin size={22} />, text: "Prime Location" },
-          { icon: <CheckCircle size={22} />, text: "Turnkey Ready" },
-        ].map((item, index) => (
+        {TOP_FEATURES.map((item, index) => (
           <div key={index} className="flex flex-col items-center gap-3 text-neutral-600 dark:text-neutral-300">
 
             {/* Icon circle */}

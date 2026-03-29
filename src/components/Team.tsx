@@ -1,47 +1,40 @@
-export default function Team() {
-  const members = [
-    {
-      name: "Jamil AlKhlaif",
-      role: "Managing Director",
-      desc: "A visionary leader, guiding the company’s growth and setting the standard for luxury villa development—driven by quality, innovation, and client satisfaction.",
-      imageSrc: "/jamil-khalif.jpg",
-    },
-    {
-      name: "Noor Alyyan",
-      role: "Sales Executive",
-      desc: "Part of a distinguished sales team, providing premium residential consultations and ensuring an exceptional client experience from selection to handover.",
-      imageSrc: "/Noor-Alayan.jpg",
-    },
-    {
-      name: "Abeer",
-      role: "Sales Executive",
-      desc: "Part of a distinguished sales team, providing premium residential consultations and ensuring an exceptional client experience from selection to handover.",
-      imageSrc: "/Abeer-Omran.jpg",
-    },
-    {
-      name: "Ahmad Taha",
-      role: "Financial Manager",
-      desc: "A trusted financial leader, overseeing budgets, forecasting, and cost control to ensure every project is delivered efficiently, transparently, and with long-term value.",
-      imageSrc: "/Ahmad-taha2.jpg",
-    },
-    {
-      name: "Eng. Shaker Abu Jamous",
-      role: "Projects Execution Manager",
-      desc: "A distinguished professional at CCC – Al-Naht Al-Mutqan, with solid expertise in executing upscale residential developments to the highest standards.",
-      imageSrc: "/Shaker-abu-jamous-2.jpg",
-    },
-  ] as const;
+const members = [
+  {
+    name: "Jamil AlKhlaif",
+    role: "Managing Director",
+    desc: "A visionary leader, guiding the company’s growth and setting the standard for luxury villa development—driven by quality, innovation, and client satisfaction.",
+    imageSrc: "/jamil-khalif.jpg",
+  },
+  {
+    name: "Noor Alyyan",
+    role: "Sales Executive",
+    desc: "Part of a distinguished sales team, providing premium residential consultations and ensuring an exceptional client experience from selection to handover.",
+    imageSrc: "/Noor-Alayan.jpg",
+  },
+  {
+    name: "Abeer",
+    role: "Sales Executive",
+    desc: "Part of a distinguished sales team, providing premium residential consultations and ensuring an exceptional client experience from selection to handover.",
+    imageSrc: "/Abeer-Omran.jpg",
+  },
+  {
+    name: "Ahmad Taha",
+    role: "Financial Manager",
+    desc: "A trusted financial leader, overseeing budgets, forecasting, and cost control to ensure every project is delivered efficiently, transparently, and with long-term value.",
+    imageSrc: "/Ahmad-taha2.jpg",
+  },
+  {
+    name: "Eng. Shaker Abu Jamous",
+    role: "Projects Execution Manager",
+    desc: "A distinguished professional at CCC – Al-Naht Al-Mutqan, with solid expertise in executing upscale residential developments to the highest standards.",
+    imageSrc: "/Shaker-abu-jamous-2.jpg",
+  },
+] as const;
 
-  const managingDirector = members.find((m) => m.role === "Managing Director") ?? members[0];
-  const nonManagingMembers = members.filter((m) => m !== managingDirector);
+type TeamMember = (typeof members)[number];
 
-  const MemberCard = ({
-    member,
-    className = "",
-  }: {
-    member: (typeof members)[number];
-    className?: string;
-  }) => (
+function MemberCard({ member, className = "" }: { member: TeamMember; className?: string }) {
+  return (
     <div
       className={`bg-[#0c0c0c] border border-gray-800 rounded-xl hover:border-yellow-500 transition-all duration-300 transform-gpu hover:-translate-y-1 hover:scale-[1.01] ${className}`}
     >
@@ -63,6 +56,12 @@ export default function Team() {
       </div>
     </div>
   );
+}
+
+/** Team section, with a highlighted managing director and a grid of members. */
+export default function Team() {
+  const managingDirector = members.find((m) => m.role === "Managing Director") ?? members[0];
+  const nonManagingMembers = members.filter((m) => m !== managingDirector);
 
   return (
     <section id="team" className="bg-black text-white py-24 px-6 scroll-mt-24">

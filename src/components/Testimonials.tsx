@@ -4,25 +4,26 @@ type Testimonial = {
   role: string;
 };
 
-export default function Testimonials() {
-  const testimonials: Testimonial[] = [
-    {
-      text: "We moved into our villa last spring and haven’t looked back. The craftsmanship in every room is exceptional.",
-      name: "Khalid Al-Rashidi",
-      role: "Owner, Grand Estate Villa",
-    },
-    {
-      text: "AlKhlaif delivered our dream home on time and on budget. The team was professional and transparent.",
-      name: "Rania Mansour",
-      role: "Homeowner, Elegant Residence",
-    },
-    {
-      text: "As both an investor and homeowner, I’ve seen many developments. AlKhlaif stands apart in quality.",
-      name: "Omar Barakat",
-      role: "Investor & Homeowner",
-    },
-  ];
+const TESTIMONIALS: Testimonial[] = [
+  {
+    text: "We moved into our villa last spring and haven’t looked back. The craftsmanship in every room is exceptional.",
+    name: "Khalid Al-Rashidi",
+    role: "Owner, Grand Estate Villa",
+  },
+  {
+    text: "AlKhlaif delivered our dream home on time and on budget. The team was professional and transparent.",
+    name: "Rania Mansour",
+    role: "Homeowner, Elegant Residence",
+  },
+  {
+    text: "As both an investor and homeowner, I’ve seen many developments. AlKhlaif stands apart in quality.",
+    name: "Omar Barakat",
+    role: "Investor & Homeowner",
+  },
+];
 
+/** Customer testimonial cards. */
+export default function Testimonials() {
   return (
     <section className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6">
       <div className="max-w-6xl mx-auto mb-12">
@@ -37,7 +38,7 @@ export default function Testimonials() {
       </div>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
-        {testimonials.map((item, i) => (
+        {TESTIMONIALS.map((item, i) => (
           <div
             key={i}
             className="group relative bg-white dark:bg-neutral-900 border border-black/10 dark:border-white/10 rounded-xl p-6 hover:border-yellow-500/70 transition-all duration-300 transform-gpu hover:-translate-y-1 hover:scale-[1.01]"

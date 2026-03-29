@@ -10,9 +10,11 @@ import Team from "./components/Team";
 import Contact from "./components/Contact";
 import BottomBar from "./components/BottomBar";
 
-
-  
-
+/**
+ * Main app composition.
+ *
+ * This file intentionally stays “dumb”: it only composes sections in order.
+ */
 export default function App() {
   return (
     <div className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 overflow-x-hidden pb-24">

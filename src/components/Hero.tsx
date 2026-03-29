@@ -1,6 +1,13 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+/**
+ * Hero section with an auto-advancing background carousel.
+ *
+ * Notes:
+ * - Preloads images to avoid flashes
+ * - Honors prefers-reduced-motion
+ */
 export default function Hero() {
   const heroImages = useMemo(
     () => [

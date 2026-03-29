@@ -1,11 +1,14 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useMemo, useState } from "react";
 
+/**
+ * Contact + lead capture form.
+ *
+ * Submits a JSON payload to a Google Sheets webhook (configured via Vite env).
+ */
 export default function Contact() {
   const whatsappNumber = "962796033600";
-  const sheetsEndpoint = (import.meta as any).env?.VITE_GOOGLE_SHEETS_ENDPOINT as
-    | string
-    | undefined;
+  const sheetsEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_ENDPOINT as string | undefined;
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

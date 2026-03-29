@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
+/**
+ * Properties section.
+ *
+ * Includes:
+ * - Two property cards with overview/floorplan tabs
+ * - A lightbox with optional multi-image navigation
+ * - A “flip card” interaction inside the lightbox (front image / back details)
+ * - A details overlay opened via the CTA button
+ */
+
 type TabKey = "overview" | "floorplan";
 
 type LightboxImage = { src: string; alt: string; description?: string };
@@ -37,6 +47,8 @@ const floorPlan550Images = (Object.values(
     as: "url",
   }),
 ) as string[]).slice();
+
+// Decode filenames from Vite asset URLs so we can rank and describe images.
 
 function getDecodedFileName(url: string) {
   const raw = url.split("/").pop() ?? "";
@@ -278,8 +290,40 @@ function PropertyCard(props: {
       <div className="flex justify-between px-6 pb-4 text-xs text-neutral-500 dark:text-neutral-400">
         <span>{stats[0]}</span>
         <span>{stats[1]}</span>
-        <span>{stats[2]}</span>
-        <span>{stats[3]}</span>
+        <button
+          type="button"
+          onClick={() => {
+            onOpenLightbox(
+              bedsSources.map((src, index) => ({
+                src,
+                alt: `${title} bedroom image ${index + 1}`,
+                description: getImageDescription(src),
+              })),
+              0,
+            );
+          }}
+          className="text-neutral-700 dark:text-neutral-200 hover:text-yellow-600 dark:hover:text-yellow-400 transition"
+          aria-label={`Open ${title} beds gallery`}
+        >
+          {stats[2]}
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            onOpenLightbox(
+              bathsSources.map((src, index) => ({
+                src,
+                alt: `${title} bathroom image ${index + 1}`,
+                description: getImageDescription(src),
+              })),
+              0,
+            );
+          }}
+          className="text-neutral-700 dark:text-neutral-200 hover:text-yellow-600 dark:hover:text-yellow-400 transition"
+          aria-label={`Open ${title} baths gallery`}
+        >
+          {stats[3]}
+        </button>
       </div>
 
       {/* CTA */}
@@ -390,7 +434,7 @@ export default function Properties() {
           badgeLeft="READY TO VIEW"
           badgeRight="PRICE ON REQUEST"
           stats={["800 m²", "900 m²", "6 Beds", "9 Baths"]}
-          ctaText="View Details / Inquire"
+          ctaText="View Details "
           onOpenLightbox={(images, startIndex = 0) =>
             (setIsCardFlipped(false), setLightbox({ images, index: startIndex }))
           }
@@ -408,7 +452,7 @@ export default function Properties() {
           badgeLeft="READY TO VIEW"
           badgeRight="PRICE ON REQUEST"
           stats={["550 m²", "900 m²", "5 Beds", "7 Baths"]}
-          ctaText="View Details / Inquire"
+          ctaText="View Details "
           onOpenLightbox={(images, startIndex = 0) =>
             (setIsCardFlipped(false), setLightbox({ images, index: startIndex }))
           }
@@ -582,32 +626,17 @@ export default function Properties() {
                           alt={lightbox.images[lightbox.index]?.alt}
                           className="w-full max-h-[80vh] object-contain rounded-lg"
                         />
-                        <div className="mt-3 flex items-center justify-between">
-                          <p className="text-xs text-white/70">Click image to flip</p>
-                          <p className="text-xs text-white/70">
-                            {lightbox.images[lightbox.index]?.alt}
-                          </p>
-                        </div>
                       </div>
 
                       {/* Back */}
                       <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div className="w-full h-full min-h-[40vh] max-h-[80vh] rounded-lg border border-white/15 bg-neutral-950/80 text-white backdrop-blur p-6 flex items-center justify-center">
-                          <div className="max-w-2xl">
-                            <p className="text-sm tracking-[0.25em] text-yellow-400 mb-3">
-                              ROOM DETAILS
-                            </p>
-                            <p className="text-white/90 leading-relaxed">
-                              {lightbox.images[lightbox.index]?.description ??
-                                "Elegant room with premium finishes and refined detailing."}
-                            </p>
-                            <p className="mt-4 text-xs text-white/70">Click to flip back</p>
-                          </div>
+                          <div className="max-w-2xl" />
                         </div>
                       </div>
                     </div>
                   </div>
-                </button>
+                </button>yes 
               </div>
             </div>
           </div>

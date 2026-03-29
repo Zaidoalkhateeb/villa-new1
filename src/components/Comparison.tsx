@@ -1,4 +1,20 @@
 export default function Comparison() {
+  /**
+   * Simple feature comparison table for the two villa models.
+   * Data is kept inline for easy edits by non-devs.
+   */
+  const rows = [
+    ["Floor Area", "800 m²", "550 m²"],
+    ["Plot Size", "900 m²", "900 m²"],
+    ["Floors", "4", "2"],
+    ["Master Bedrooms", "6", "5"],
+    ["Bathrooms", "9", "7"],
+    ["Air Conditioning", "Central", "Central"],
+    ["Underfloor Heating", "✔ Yes", "✔ Yes"],
+    ["Double-Height Ceiling", "✔ Yes", "—"],
+    ["Status", "Ready to View", "Ready to View"],
+  ] as const;
+
   return (
     <section className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6">
 
@@ -39,17 +55,7 @@ export default function Comparison() {
         </div>
 
         {/* Rows */}
-        {[
-          ["Floor Area", "800 m²", "550 m²"],
-          ["Plot Size", "900 m²", "900 m²"],
-          ["Floors", "4", "2"],
-          ["Master Bedrooms", "6", "5"],
-          ["Bathrooms", "9", "7"],
-          ["Air Conditioning", "Central", "Central"],
-          ["Underfloor Heating", "✔ Yes", "✔ Yes"],
-          ["Double-Height Ceiling", "✔ Yes", "—"],
-          ["Status", "Ready to View", "Ready to View"],
-        ].map((row, i) => (
+        {rows.map((row, i) => (
           <div
             key={i}
             className="grid grid-cols-3 border-t border-black/10 dark:border-white/10 text-center text-xs sm:text-sm"

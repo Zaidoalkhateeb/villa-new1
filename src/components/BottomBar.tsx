@@ -1,5 +1,6 @@
 import { Phone } from "lucide-react";
 
+/** Sticky bottom CTA bar for call/WhatsApp actions. */
 export default function BottomBar() {
   const phoneNumberDisplay = "+962 6 593 1620";
   const phoneNumberTel = "+96265931620";

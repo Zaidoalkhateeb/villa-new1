@@ -1,5 +1,12 @@
 export type Theme = "light" | "dark";
 
+/**
+ * Theme utilities.
+ *
+ * - Stores user choice in localStorage
+ * - Applies the Tailwind `dark` class to <html>
+ * - Broadcasts theme changes via a DOM CustomEvent
+ */
 const STORAGE_KEY = "theme";
 const DARK_CLASS = "dark";
 
@@ -32,6 +39,7 @@ export function getCurrentThemeFromDom(): Theme {
   return document.documentElement.classList.contains(DARK_CLASS) ? "dark" : "light";
 }
 
+/** Apply theme to the DOM and notify listeners. */
 export function applyTheme(theme: Theme) {
   if (typeof document === "undefined") return;
 
@@ -48,6 +56,7 @@ export function applyTheme(theme: Theme) {
   );
 }
 
+/** Persist and apply the theme as an explicit user choice. */
 export function setTheme(theme: Theme) {
   try {
     localStorage.setItem(STORAGE_KEY, theme);
@@ -66,6 +75,12 @@ export function toggleTheme(): Theme {
   return next;
 }
 
+/**
+ * Initializes theme on startup.
+ *
+ * If no stored theme exists, follows system theme changes until the user
+ * explicitly toggles (then it “locks” to the stored preference).
+ */
 export function initTheme(): Theme {
   const stored = getStoredTheme();
   const initial = stored ?? getSystemTheme();
@@ -101,6 +116,7 @@ export function initTheme(): Theme {
   return initial;
 }
 
+/** Stops following system theme updates (used after first explicit user choice). */
 export function markThemeAsStored() {
   window.dispatchEvent(new Event("theme:store"));
 }

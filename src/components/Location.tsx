@@ -1,4 +1,8 @@
 export default function Location() {
+  /**
+   * Location section.
+   * Uses an embedded Google Maps iframe and an external link for full navigation.
+   */
   return (
     <section
       id="location"

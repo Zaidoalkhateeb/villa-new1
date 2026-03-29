@@ -1,33 +1,41 @@
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type LightboxImage = { src: string; alt: string };
 
-export default function Gallery() {
-  const images: LightboxImage[] = [
-    { src: "/gallery-living.png", alt: "Living area" },
-    { src: "/gallery-kitchen.png", alt: "Kitchen" },
-    { src: "/gallery-master.png", alt: "Master bedroom" },
-    { src: "/gallery-pool.png", alt: "Pool" },
-  ];
+const images: LightboxImage[] = [
+  { src: "/gallery-living.png", alt: "Living area" },
+  { src: "/gallery-kitchen.png", alt: "Kitchen" },
+  { src: "/gallery-master.png", alt: "Master bedroom" },
+  { src: "/gallery-pool.png", alt: "Pool" },
+];
 
+/**
+ * Simple gallery section with a basic lightbox.
+ *
+ * Supports:
+ * - Click to open
+ * - ESC to close
+ * - Arrow keys / buttons to navigate
+ */
+export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const closeLightbox = () => setLightboxIndex(null);
 
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
     setLightboxIndex((current) => {
       if (current === null) return current;
       return (current - 1 + images.length) % images.length;
     });
-  };
+  }, []);
 
-  const goNext = () => {
+  const goNext = useCallback(() => {
     setLightboxIndex((current) => {
       if (current === null) return current;
       return (current + 1) % images.length;
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -40,7 +48,7 @@ export default function Gallery() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [lightboxIndex]);
+  }, [lightboxIndex, goNext, goPrev]);
 
   return (
     <section
