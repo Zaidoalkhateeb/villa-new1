@@ -63,29 +63,54 @@ function getImageDescription(src: string) {
   const fileName = getDecodedFileName(src).toLowerCase();
 
   if (fileName.includes("floorplan-800")) {
-    return "800 m² floor plan overview with key zoning and circulation.";
+    return "800 m² planning with clear zoning and elegant circulation.";
   }
   if (fileName.includes("floorplan-550")) {
-    return "550 m² floor plan overview with a balanced indoor-outdoor layout.";
+    return "550 m² planning with balanced flow and refined proportions.";
   }
   if (fileName.includes("grand") && fileName.includes("floor")) {
-    return "Grand floor plan — main living areas and primary access.";
+    return "Main level plan with generous living zones and seamless transitions.";
   }
   if (fileName.includes("first") && fileName.includes("floor")) {
-    return "First floor plan — bedroom suites and private spaces.";
+    return "Upper level plan focused on private suites and quiet separation.";
   }
   if (fileName.includes("roof") && fileName.includes("floor")) {
-    return "Roof floor plan — terrace and upper amenities.";
+    return "Roof plan designed for terrace living and open-air amenities.";
   }
   if (fileName.includes("basment") || fileName.includes("basement")) {
-    return "Basement floor plan — storage, service areas, and utilities.";
+    return "Basement plan with service, storage, and utilities thoughtfully organized.";
   }
 
   if (/^\d+\.(jpe?g|png|webp)$/.test(fileName) || fileName.startsWith("whatsapp image")) {
-    return "Bedroom suite — premium finishes, warm lighting, and a calm palette.";
+    return "Bedroom suite with warm lighting, premium finishes, and a calm palette.";
   }
 
-  return "Elegant interior — high-end materials and refined detailing.";
+  return "Refined interior with premium materials and clean detailing.";
+}
+
+function getFlashCardCopy(image?: LightboxImage) {
+  const alt = image?.alt ?? "Image details";
+  const src = image?.src ?? "";
+  const base = image?.description ?? (src ? getImageDescription(src) : "");
+
+  const altLower = alt.toLowerCase();
+  const isFloor = altLower.includes("floor plan") || src.toLowerCase().includes("floorplan");
+  const isBedroom = altLower.includes("bedroom");
+  const isBathroom = altLower.includes("bathroom");
+
+  const title = isFloor ? "Plan Notes" : "Design Notes";
+
+  const highlights = isFloor
+    ? ["Clear zoning", "Natural flow", "Practical scale"]
+    : isBedroom
+      ? ["Comfort first", "Soft lighting", "Tailored finishes"]
+      : isBathroom
+        ? ["Spa feel", "Clean lines", "Premium surfaces"]
+        : ["Premium materials", "Balanced tones", "Quiet detailing"];
+
+  const body = base || (isFloor ? "A thoughtfully arranged plan." : "A refined interior moment.");
+
+  return { heading: title, subtitle: alt, body, highlights };
 }
 
 function floorPlanRank(url: string) {
@@ -351,6 +376,9 @@ export default function Properties() {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const [details, setDetails] = useState<DetailsState | null>(null);
+
+  const activeLightboxImage = lightbox?.images[lightbox.index];
+  const flashCard = getFlashCardCopy(activeLightboxImage);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -631,12 +659,30 @@ export default function Properties() {
                       {/* Back */}
                       <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div className="w-full h-full min-h-[40vh] max-h-[80vh] rounded-lg border border-white/15 bg-neutral-950/80 text-white backdrop-blur p-6 flex items-center justify-center">
-                          <div className="max-w-2xl" />
+                          <div className="max-w-2xl">
+                            <p className="text-xs tracking-[0.25em] text-yellow-400 mb-3">
+                              {flashCard.heading}
+                            </p>
+                            <h4 className="text-lg font-serif mb-2">{flashCard.subtitle}</h4>
+                            <p className="text-sm leading-relaxed text-white/90">{flashCard.body}</p>
+
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {flashCard.highlights.map((item) => (
+                                <span
+                                  key={item}
+                                  className="text-[11px] tracking-wide px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/85"
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                            <p className="mt-4 text-xs text-white/70">Tap to return to the image.</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </button>yes 
+                </button>
               </div>
             </div>
           </div>
