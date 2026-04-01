@@ -107,9 +107,12 @@ export default function Navbar() {
         </a>
 
         {/* Inquire Button (FIXED) */}
-        <button className="border border-yellow-500 px-5 py-2 text-sm tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition">
+        <a
+          href="#contact"
+          className="border border-yellow-500 px-5 py-2 text-sm tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition"
+        >
           INQUIRE NOW
-        </button>
+        </a>
 
       </div>
 
