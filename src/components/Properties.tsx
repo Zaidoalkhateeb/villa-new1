@@ -275,7 +275,7 @@ function PropertyCard(props: {
       </div>
 
       {/* Stats */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-6 pb-4 text-xs text-neutral-500 dark:text-neutral-400">
+      <div className="grid grid-cols-2 sm:grid-cols-4 items-center text-center gap-x-3 gap-y-2 px-6 pb-4 text-xs text-neutral-500 dark:text-neutral-400">
         <span>{stats[0]}</span>
         <span>{stats[1]}</span>
         <button
@@ -375,11 +375,9 @@ export default function Properties() {
     return [primary, ...rest];
   })();
 
-  const floorPlans550 = (() => {
-    return ["/alkhlaif-Grand-floor-550.jpg", "/alkhlaif-First-floor-550.jpg"].filter((src) =>
-      floorPlan550Images.includes(src),
-    );
-  })();
+  const floorPlans550 = floorPlan550Images.length
+    ? floorPlan550Images
+    : ["/floorplan-550.png"];
 
   return (
     <section
