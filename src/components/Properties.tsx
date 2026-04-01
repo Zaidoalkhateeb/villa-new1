@@ -34,24 +34,14 @@ const defaultRoomGallery = [
   "/living-room-1.jpg",
 ];
 
-function normalizeAssetUrl(value: unknown): string | null {
-  if (typeof value === "string") return value;
-  if (value && typeof value === "object") {
-    const maybeDefault = (value as { default?: unknown }).default;
-    if (typeof maybeDefault === "string") return maybeDefault;
-  }
-  return null;
-}
+const floorPlan8000Images = [
+  "/alkhlaif-Grand-floor.jpg",
+  "/alkhlaif-First-floor.jpg",
+  "/alkhlaif-Roof-floor.jpg",
+  "/alkhlaif-Basment-floor.jpg",
+];
 
-function globToUrls(pattern: string): string[] {
-  return Object.values(import.meta.glob(pattern, { eager: true, query: "?url", import: "default" }))
-    .map((entry) => normalizeAssetUrl(entry))
-    .filter((entry): entry is string => Boolean(entry));
-}
-
-const floorPlan8000Images = globToUrls("../../public/alkhlaif-*-floor.jpg").slice();
-
-const floorPlan550Images = globToUrls("../../public/alkhlaif-*-floor-550.jpg").slice();
+const floorPlan550Images = ["/alkhlaif-Grand-floor-550.jpg", "/alkhlaif-First-floor-550.jpg"];
 
 // Decode filenames from Vite asset URLs so we can rank and describe images.
 
@@ -118,48 +108,15 @@ function getFlashCardCopy(image?: LightboxImage) {
   return { heading: title, subtitle: '', body, highlights };
 }
 
-function floorPlanRank(url: string) {
-  const name = url.toLowerCase();
-  if (name.includes("grand")) return 0;
-  if (name.includes("first")) return 1;
-  if (name.includes("roof")) return 2;
-  // Folder uses "Basment" in filename; handle both spellings.
-  if (name.includes("basment") || name.includes("basement")) return 3;
-  return 99;
+function getFloorPlanLabel(src: string) {
+  const name = getDecodedFileName(src).toLowerCase();
+  if (name.includes("grand") && name.includes("floor")) return "Grand Floor";
+  if (name.includes("first") && name.includes("floor")) return "First Floor";
+  if (name.includes("roof") && name.includes("floor")) return "Roof Floor";
+  if (name.includes("basment") || name.includes("basement")) return "Basement Floor";
+  return "Floor Plan";
 }
-
-floorPlan8000Images.sort((a, b) => {
-  const byRank = floorPlanRank(a) - floorPlanRank(b);
-  if (byRank !== 0) return byRank;
-  return a.localeCompare(b);
-});
-
-floorPlan550Images.sort((a, b) => {
-  const byRank = floorPlanRank(a) - floorPlanRank(b);
-  if (byRank !== 0) return byRank;
-  return a.localeCompare(b);
-});
-
-const beds8000Images = globToUrls("../../public/*.jpeg")
-  .filter((url) => {
-    const fileName = getDecodedFileName(url).toLowerCase();
-    return /^\d+\.jpeg$/.test(fileName) || fileName.startsWith("whatsapp image");
-  })
-  .slice();
-
-function bedsRank(url: string) {
-  const fileName = getDecodedFileName(url).toLowerCase();
-  const match = fileName.match(/^(\d+)\.jpeg$/);
-  if (match?.[1]) return Number(match[1]);
-  if (fileName.startsWith("whatsapp image")) return 1000;
-  return 2000;
-}
-
-beds8000Images.sort((a, b) => {
-  const byRank = bedsRank(a) - bedsRank(b);
-  if (byRank !== 0) return byRank;
-  return a.localeCompare(b);
-});
+const beds8000Images = ["/1.jpeg", "/4.jpeg", "/WhatsApp Image 2026-03-28 at 6.32.49 PM.jpeg"];
 
 function PropertyCard(props: {
   title: string;
@@ -217,12 +174,9 @@ function PropertyCard(props: {
           onClick={() => {
             if (activeTab === "floorplan") {
               onOpenLightbox(
-                floorPlanSources.map((src, index) => ({
+                floorPlanSources.map((src) => ({
                   src,
-                  alt:
-                    floorPlanSources.length > 1
-                      ? `${title} floor plan ${index + 1}`
-                      : `${title} floor plan`,
+                  alt: `${title} ${getFloorPlanLabel(src)}`,
                   description: getImageDescription(src),
                 })),
                 0,
@@ -413,9 +367,16 @@ export default function Properties() {
   })();
 
   const floorPlans550 = (() => {
-    const primary = "/floorplan-550.png";
-    const rest = floorPlan550Images.filter((src) => src !== primary).slice(0, 2);
-    return [primary, ...rest];
+    const preferred = ["/alkhlaif-Grand-floor-550.jpg", "/alkhlaif-First-floor-550.jpg"];
+    const availablePreferred = preferred.filter((src) => floorPlan550Images.includes(src));
+    if (availablePreferred.length === preferred.length) return availablePreferred;
+
+    const fallback = floorPlan550Images.filter(
+      (src) => src.includes("grand") || src.includes("first"),
+    );
+    if (fallback.length) return fallback.slice(0, 2);
+
+    return floorPlan550Images.slice(0, 2);
   })();
 
   return (
