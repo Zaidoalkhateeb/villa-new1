@@ -1,106 +1,63 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
- * Hero section with an auto-advancing background carousel.
+ * Hero section with a background video.
  *
  * Notes:
- * - Preloads images to avoid flashes
- * - Honors prefers-reduced-motion
+ * - Honors prefers-reduced-motion (falls back to a static poster image)
  */
 export default function Hero() {
-  const heroImages = useMemo(
-    () => [
-      "/hero-bg.png",
-      "/living-room-1.jpg",
-      "/gallery-living.png",
-      "/gallery-kitchen.png",
-      "/1_10-Photo.jpg",
-    ],
-    [],
-  );
+  const heroVideoSrc = "/Clip%201%20(1).mp4";
+  const posterSrc = "/hero-bg.png";
 
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const goPrev = () => {
-    setActiveIndex((current) =>
-      (current - 1 + heroImages.length) % heroImages.length,
-    );
-  };
-
-  const goNext = () => {
-    setActiveIndex((current) => (current + 1) % heroImages.length);
-  };
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Preload so the first paint doesn't show a grey/blank placeholder.
-    heroImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, [heroImages]);
+    if (typeof window === "undefined" || !window.matchMedia) return;
 
-  useEffect(() => {
-    if (heroImages.length <= 1) return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setPrefersReducedMotion(mediaQuery.matches);
 
-    const prefersReducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    update();
+    mediaQuery.addEventListener?.("change", update);
 
-    if (prefersReducedMotion) return;
-
-    const id = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % heroImages.length);
-    }, 6000);
-
-    return () => window.clearInterval(id);
-  }, [heroImages]);
+    return () => {
+      mediaQuery.removeEventListener?.("change", update);
+    };
+  }, []);
 
   return (
     <section className="h-screen relative overflow-hidden bg-black">
-      {/* Sliding Background */}
+      {/* Background */}
       <div className="absolute inset-0">
-        {heroImages.map((src, i) => (
+        {prefersReducedMotion ? (
           <img
-            key={src}
-            src={src}
+            src={posterSrc}
             alt=""
             aria-hidden="true"
-            className={
-              "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out " +
-              (i === activeIndex ? "opacity-100" : "opacity-0")
-            }
-            loading={i === 0 ? "eager" : "lazy"}
-            fetchPriority={i === 0 ? "high" : undefined}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
             draggable={false}
           />
-        ))}
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={posterSrc}
+            aria-hidden="true"
+          >
+            <source src={heroVideoSrc} type="video/mp4" />
+          </video>
+        )}
       </div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-
-      {/* Arrows */}
-      {heroImages.length > 1 && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-between px-4 sm:px-6">
-          <button
-            type="button"
-            onClick={goPrev}
-            className="pointer-events-auto grid place-items-center h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-yellow-500/50 bg-black/50 text-yellow-400 backdrop-blur transition hover:bg-black/70 hover:border-yellow-500/70"
-            aria-label="Previous image"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            className="pointer-events-auto grid place-items-center h-10 w-10 sm:h-11 sm:w-11 rounded-full border border-yellow-500/50 bg-black/50 text-yellow-400 backdrop-blur transition hover:bg-black/70 hover:border-yellow-500/70"
-            aria-label="Next image"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      )}
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 sm:px-6 md:px-8">

@@ -82,7 +82,7 @@ function getImageDescription(src: string) {
   }
 
   if (/^\d+\.(jpe?g|png|webp)$/.test(fileName) || fileName.startsWith("whatsapp image")) {
-    return "Bedroom suite with warm lighting, premium finishes, and a calm palette.";
+    return "Luxury Bedroom — Experience refined living with premium finishes and modern elegance.";
   }
 
   return "Refined interior with premium materials and clean detailing.";
@@ -110,7 +110,7 @@ function getFlashCardCopy(image?: LightboxImage) {
 
   const body = base || (isFloor ? "A thoughtfully arranged plan." : "A refined interior moment.");
 
-  return { heading: title, subtitle: alt, body, highlights };
+  return { heading: title, subtitle: '', body, highlights };
 }
 
 function floorPlanRank(url: string) {
@@ -660,23 +660,22 @@ export default function Properties() {
                       <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div className="w-full h-full min-h-[40vh] max-h-[80vh] rounded-lg border border-white/15 bg-neutral-950/80 text-white backdrop-blur p-6 flex items-center justify-center">
                           <div className="max-w-2xl">
-                            <p className="text-xs tracking-[0.25em] text-yellow-400 mb-3">
+                            <p className="text-2xl md:text-3xl font-bold tracking-[0.25em] text-yellow-400 mb-4">
                               {flashCard.heading}
                             </p>
-                            <h4 className="text-lg font-serif mb-2">{flashCard.subtitle}</h4>
-                            <p className="text-sm leading-relaxed text-white/90">{flashCard.body}</p>
+                            <p className="text-lg md:text-xl font-semibold leading-relaxed text-white mb-4">{flashCard.body}</p>
 
-                            <div className="mt-4 flex flex-wrap gap-2">
+                            <div className="mt-4 flex flex-wrap gap-3">
                               {flashCard.highlights.map((item) => (
                                 <span
                                   key={item}
-                                  className="text-[11px] tracking-wide px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/85"
+                                  className="text-base md:text-lg font-semibold tracking-wide px-4 py-2 rounded-full border border-white/15 bg-white/10 text-white/90"
                                 >
                                   {item}
                                 </span>
                               ))}
                             </div>
-                            <p className="mt-4 text-xs text-white/70">Tap to return to the image.</p>
+                            {/* Removed 'Tap to return to the image.' */}
                           </div>
                         </div>
                       </div>

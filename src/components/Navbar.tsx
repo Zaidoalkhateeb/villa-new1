@@ -1,6 +1,6 @@
 import { Phone } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getCurrentThemeFromDom, toggleTheme, type Theme } from "../theme";
+
 
 /**
  * Top navigation bar.
@@ -12,7 +12,7 @@ import { getCurrentThemeFromDom, toggleTheme, type Theme } from "../theme";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoImageOk, setLogoImageOk] = useState(true);
-  const [theme, setTheme] = useState<Theme>(() => getCurrentThemeFromDom());
+
 
   useEffect(() => {
     const onScroll = () => {
@@ -24,17 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const onThemeChange = (event: Event) => {
-      const next = (event as CustomEvent<{ theme: Theme }>).detail?.theme;
-      if (next === "light" || next === "dark") setTheme(next);
-      else setTheme(getCurrentThemeFromDom());
-    };
 
-    window.addEventListener("theme:change", onThemeChange as EventListener);
-    return () =>
-      window.removeEventListener("theme:change", onThemeChange as EventListener);
-  }, []);
 
   return (
     <nav
@@ -46,21 +36,7 @@ export default function Navbar() {
       }
     >
 
-      {/* Theme Toggle (Top Right) */}
-      <button
-        type="button"
-        onClick={() => setTheme(toggleTheme())}
-        className={
-          "absolute top-4 right-6 lg:right-10 inline-flex items-center justify-center h-8 px-2 rounded-lg border text-[10px] tracking-[0.25em] transition hover:text-yellow-500 " +
-          (isScrolled
-            ? "border-black/10 dark:border-white/10 text-neutral-700 dark:text-neutral-200 bg-white/60 dark:bg-neutral-950/40 backdrop-blur"
-            : "border-white/30 text-white/85 bg-black/10 backdrop-blur")
-        }
-        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      >
-        {theme === "dark" ? "LIGHT" : "DARK"}
-      </button>
+
 
       <div
         className={

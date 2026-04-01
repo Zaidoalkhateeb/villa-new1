@@ -42,7 +42,7 @@ export default function Location() {
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-yellow-600" />
             <p className="text-yellow-600 text-sm tracking-[0.3em] font-serif font-semibold">
-              WHY JORDAN
+              WHY US
             </p>
             <span className="h-px w-10 bg-yellow-600" />
           </div>

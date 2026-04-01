@@ -5,14 +5,14 @@ export default function Comparison() {
    */
   const rows = [
     ["Floor Area", "800 m²", "550 m²"],
-    ["Plot Size", "900 m²", "900 m²"],
+    ["Plot Size (Land )", "900 m²", "900 m²"],
     ["Floors", "4", "2"],
-    ["Master Bedrooms", "6", "5"],
-    ["Bathrooms", "9", "7"],
+    ["Master Bedrooms", "5", "4"],
+    ["Bathrooms", "8", "6"],
     ["Air Conditioning", "Central", "Central"],
     ["Underfloor Heating", "✔ Yes", "✔ Yes"],
-    ["Double-Height Ceiling", "✔ Yes", "—"],
-    ["Status", "Ready to View", "Ready to View"],
+    ["Double-Height Ceiling", "✔ Yes", "✔ Yes"],
+    ["Status", "Ready to View", "OFF Plan"],
   ] as const;
 
   return (
