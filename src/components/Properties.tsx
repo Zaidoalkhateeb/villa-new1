@@ -332,23 +332,7 @@ function PropertyCard(props: {
         >
           {stats[2]}
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            onOpenLightbox(
-              bathsSources.map((src, index) => ({
-                src,
-                alt: `${title} bathroom image ${index + 1}`,
-                description: getImageDescription(src),
-              })),
-              0,
-            );
-          }}
-          className="text-neutral-700 dark:text-neutral-200 hover:text-yellow-600 dark:hover:text-yellow-400 transition"
-          aria-label={`Open ${title} baths gallery`}
-        >
-          {stats[3]}
-        </button>
+        <span>{stats[3]}</span>
       </div>
 
       {/* CTA */}
@@ -528,7 +512,7 @@ export default function Properties() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <button
                 type="button"
                 className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm tracking-wide transition hover:bg-yellow-500 hover:border-yellow-500 hover:text-black"
@@ -544,22 +528,6 @@ export default function Properties() {
                 }}
               >
                 Open Beds
-              </button>
-              <button
-                type="button"
-                className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm tracking-wide transition hover:bg-yellow-500 hover:border-yellow-500 hover:text-black"
-                onClick={() => {
-                  const images = details.bathsSources.map((src, index) => ({
-                    src,
-                    alt: `${details.title} bathroom image ${index + 1}`,
-                    description: getImageDescription(src),
-                  }));
-                  setDetails(null);
-                  setIsCardFlipped(false);
-                  setLightbox({ images, index: 0 });
-                }}
-              >
-                Open Baths
               </button>
             </div>
           </div>
