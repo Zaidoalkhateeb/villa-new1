@@ -165,6 +165,9 @@ function PropertyCard(props: {
   const activeImageAlt =
     activeTab === "overview" ? `${title} overview` : `${title} floor plan`;
 
+  const activeFloorLabel =
+    activeTab === "floorplan" ? getFloorPlanLabel(activeImageSrc) : null;
+
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-xl overflow-hidden border border-black/10 dark:border-white/10 transition-all duration-300 transform-gpu hover:border-yellow-500/70 hover:bg-yellow-500/5 dark:hover:bg-yellow-500/10 hover:-translate-y-1 hover:scale-[1.01] flex flex-col h-full">
       {/* Image */}
@@ -215,6 +218,12 @@ function PropertyCard(props: {
           {activeTab === "floorplan" && floorPlanSources.length > 1 && (
             <span className="absolute bottom-3 right-3 text-[10px] tracking-[0.25em] px-2 py-1 rounded-md border border-white/15 bg-black/55 text-white/85 backdrop-blur pointer-events-none">
               1/{floorPlanSources.length}
+            </span>
+          )}
+
+          {activeFloorLabel && (
+            <span className="absolute bottom-3 left-3 text-[10px] tracking-[0.2em] uppercase px-2 py-1 rounded-md border border-yellow-400/40 bg-black/60 text-yellow-300 backdrop-blur pointer-events-none">
+              {activeFloorLabel}
             </span>
           )}
         </button>
@@ -367,16 +376,9 @@ export default function Properties() {
   })();
 
   const floorPlans550 = (() => {
-    const preferred = ["/alkhlaif-Grand-floor-550.jpg", "/alkhlaif-First-floor-550.jpg"];
-    const availablePreferred = preferred.filter((src) => floorPlan550Images.includes(src));
-    if (availablePreferred.length === preferred.length) return availablePreferred;
-
-    const fallback = floorPlan550Images.filter(
-      (src) => src.includes("grand") || src.includes("first"),
+    return ["/alkhlaif-Grand-floor-550.jpg", "/alkhlaif-First-floor-550.jpg"].filter((src) =>
+      floorPlan550Images.includes(src),
     );
-    if (fallback.length) return fallback.slice(0, 2);
-
-    return floorPlan550Images.slice(0, 2);
   })();
 
   return (
