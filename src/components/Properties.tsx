@@ -247,7 +247,7 @@ function PropertyCard(props: {
           <img
             src={activeImageSrc}
             alt={activeImageAlt}
-            className="w-full h-72 object-cover cursor-zoom-in"
+            className="w-full h-56 sm:h-72 object-cover cursor-zoom-in"
             loading="lazy"
           />
 
@@ -312,7 +312,7 @@ function PropertyCard(props: {
       </div>
 
       {/* Stats */}
-      <div className="flex justify-between px-6 pb-4 text-xs text-neutral-500 dark:text-neutral-400">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-6 pb-4 text-xs text-neutral-500 dark:text-neutral-400">
         <span>{stats[0]}</span>
         <span>{stats[1]}</span>
         <button
@@ -421,11 +421,11 @@ export default function Properties() {
   return (
     <section
       id="properties"
-      className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-20 px-6 scroll-mt-24"
+      className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-20 px-4 sm:px-6 scroll-mt-24"
     >
       {/* Title */}
       <div className="max-w-6xl mx-auto mb-12">
-        <h2 className="text-4xl font-serif mb-4">
+        <h2 className="text-3xl sm:text-4xl font-serif mb-4">
           Exclusive <span className="text-yellow-600 italic">Properties</span>
         </h2>
         <p className="text-neutral-600 dark:text-neutral-300 max-w-xl">
@@ -434,7 +434,7 @@ export default function Properties() {
       </div>
 
       {/* Cards */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-10">
         <PropertyCard
           title="The Grand Estate"
           overviewImageSrc="/villa-1.png"
@@ -481,7 +481,7 @@ export default function Properties() {
           onClick={() => setDetails(null)}
         >
           <div
-            className="w-full max-w-xl rounded-xl border border-white/15 bg-neutral-950/80 text-white backdrop-blur p-6"
+            className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-xl border border-white/15 bg-neutral-950/80 text-white backdrop-blur p-5 sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-6 mb-4">
@@ -501,7 +501,7 @@ export default function Properties() {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {details.stats.map((value) => (
                 <div
                   key={value}

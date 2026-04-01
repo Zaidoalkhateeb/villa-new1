@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoImageOk, setLogoImageOk] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
   useEffect(() => {
@@ -23,6 +24,19 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [isMenuOpen]);
 
 
 
@@ -40,7 +54,7 @@ export default function Navbar() {
 
       <div
         className={
-          "mx-auto w-full max-w-7xl px-6 lg:px-10 py-4 flex items-center justify-between transition-colors duration-300 " +
+          "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between transition-colors duration-300 " +
           (isScrolled ? "text-neutral-900 dark:text-neutral-50" : "text-white")
         }
       >
@@ -91,7 +105,7 @@ export default function Navbar() {
       </ul>
 
       {/* Right Side */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 sm:gap-4">
 
         {/* Phone */}
         <a
@@ -103,20 +117,66 @@ export default function Navbar() {
           }
         >
         <Phone size={16} className={"transition group-hover:text-yellow-500 " + (isScrolled ? "text-neutral-500 dark:text-neutral-300" : "text-white/70")} />
-        <span>+962 6 593 1620</span>
+        <span className="hidden sm:inline">+962 6 593 1620</span>
         </a>
 
         {/* Inquire Button (FIXED) */}
         <a
           href="#contact"
-          className="border border-yellow-500 px-5 py-2 text-sm tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition"
+          className="hidden sm:inline-block border border-yellow-500 px-4 py-2 text-xs sm:text-sm tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition"
         >
           INQUIRE NOW
         </a>
 
+        <button
+          type="button"
+          className={
+            "grid place-items-center h-10 w-10 rounded-md md:hidden border transition " +
+            (isScrolled
+              ? "border-black/10 dark:border-white/10 hover:border-yellow-500"
+              : "border-white/20 hover:border-yellow-500")
+          }
+          onClick={() => setIsMenuOpen((open) => !open)}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+
       </div>
 
       </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden border-t border-black/10 dark:border-white/10 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur">
+          <div className="mx-auto w-full max-w-7xl px-4 py-3">
+            <ul className="flex flex-col gap-1 text-sm tracking-[0.18em]">
+              <li>
+                <a href="#properties" className="block py-2" onClick={() => setIsMenuOpen(false)}>PROPERTIES</a>
+              </li>
+              <li>
+                <a href="#location" className="block py-2" onClick={() => setIsMenuOpen(false)}>LOCATION</a>
+              </li>
+              <li>
+                <a href="#gallery" className="block py-2" onClick={() => setIsMenuOpen(false)}>GALLERY</a>
+              </li>
+              <li>
+                <a href="#team" className="block py-2" onClick={() => setIsMenuOpen(false)}>TEAM</a>
+              </li>
+              <li>
+                <a href="#contact" className="block py-2" onClick={() => setIsMenuOpen(false)}>CONTACT</a>
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-3 inline-block border border-yellow-500 px-4 py-2 text-xs tracking-wide text-yellow-600 hover:bg-yellow-500 hover:text-black transition"
+            >
+              INQUIRE NOW
+            </a>
+          </div>
+        </div>
+      )}
 
     </nav>
   );

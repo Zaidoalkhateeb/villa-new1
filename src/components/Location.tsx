@@ -6,7 +6,7 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6 scroll-mt-24"
+      className="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-20 sm:py-24 px-4 sm:px-6 scroll-mt-24"
     >
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-stretch">
@@ -34,7 +34,7 @@ export default function Location() {
         </div>
 
         {/* TEXT CONTENT */}
-        <div className="rounded-xl bg-white dark:bg-neutral-900 border border-black/10 dark:border-white/10 p-8 md:h-[460px] flex flex-col">
+        <div className="rounded-xl bg-white dark:bg-neutral-900 border border-black/10 dark:border-white/10 p-5 sm:p-8 md:h-[460px] flex flex-col">
 
           <div className="flex-1">
 
@@ -69,9 +69,9 @@ export default function Location() {
           </div>
 
           {/* Stats Boxes */}
-          <div className="flex gap-6 mt-auto -mt-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-auto">
 
-            <div className="border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900/60 rounded-lg px-6 py-5">
+            <div className="border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900/60 rounded-lg px-5 py-4 sm:px-6 sm:py-5">
               <h3 className="text-2xl text-yellow-600 font-serif mb-1">
                 13+
               </h3>
@@ -80,7 +80,7 @@ export default function Location() {
               </p>
             </div>
 
-            <div className="border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900/60 rounded-lg px-6 py-5">
+            <div className="border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900/60 rounded-lg px-5 py-4 sm:px-6 sm:py-5">
               <h3 className="text-2xl text-yellow-600 font-serif mb-1">
                 100%
               </h3>

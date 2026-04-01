@@ -16,7 +16,7 @@ export default function Comparison() {
   ] as const;
 
   return (
-    <section className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-24 px-6">
+    <section className="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50 py-20 sm:py-24 px-4 sm:px-6">
 
       {/* Header */}
       <div className="text-center mb-12">
@@ -33,7 +33,9 @@ export default function Comparison() {
       </div>
 
       {/* Table */}
-      <div className="max-w-3xl mx-auto border border-black/10 dark:border-white/10 rounded-xl overflow-hidden bg-white dark:bg-neutral-900">
+      <div className="max-w-3xl mx-auto overflow-x-auto rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900">
+
+        <div className="min-w-[620px]">
 
         {/* Table Head */}
         <div className="grid grid-cols-3 bg-neutral-100 dark:bg-neutral-900/60 text-center text-xs sm:text-sm">
@@ -67,6 +69,8 @@ export default function Comparison() {
             <div className="p-3 sm:p-4">{row[2]}</div>
           </div>
         ))}
+
+        </div>
 
       </div>
 
