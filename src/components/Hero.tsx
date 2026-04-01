@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Hero section with a background video.
@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
  * - Honors prefers-reduced-motion (falls back to a static poster image)
  */
 export default function Hero() {
-  const heroVideoSrc = "/Clip%201%20(1).mp4";
-  const posterSrc = "/hero-bg.png";
+  const heroVideoSrc = "/hero-optimized.mp4";
+  const heroVideoFallbackSrc = "/Clip%201%20(1).mp4";
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
@@ -26,13 +28,43 @@ export default function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = async () => {
+      try {
+        await video.play();
+        setAutoplayBlocked(false);
+      } catch {
+        setAutoplayBlocked(true);
+      }
+    };
+
+    tryPlay();
+  }, [prefersReducedMotion]);
+
+  const handleTapToPlay = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    try {
+      await video.play();
+      setAutoplayBlocked(false);
+    } catch {
+      setAutoplayBlocked(true);
+    }
+  };
+
   return (
     <section className="h-screen relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
         {prefersReducedMotion ? (
           <img
-            src={posterSrc}
+            src="/hero-bg.png"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover"
@@ -42,16 +74,18 @@ export default function Hero() {
           />
         ) : (
           <video
+            ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
-            poster={posterSrc}
+            preload="auto"
             aria-hidden="true"
+            onPlay={() => setAutoplayBlocked(false)}
           >
             <source src={heroVideoSrc} type="video/mp4" />
+            <source src={heroVideoFallbackSrc} type="video/mp4" />
           </video>
         )}
       </div>
@@ -91,6 +125,16 @@ export default function Hero() {
           </a>
 
         </div>
+
+        {!prefersReducedMotion && autoplayBlocked && (
+          <button
+            type="button"
+            onClick={handleTapToPlay}
+            className="mt-5 border border-white/40 bg-black/40 px-5 py-2 text-sm tracking-wide backdrop-blur hover:border-white hover:bg-black/55 transition"
+          >
+            TAP TO PLAY VIDEO
+          </button>
+        )}
 
       </div>
     </section>

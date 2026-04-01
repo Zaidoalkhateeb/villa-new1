@@ -34,19 +34,24 @@ const defaultRoomGallery = [
   "/living-room-1.jpg",
 ];
 
-const floorPlan8000Images = (Object.values(
-  import.meta.glob("../../public/alkhlaif-*-floor.jpg", {
-    eager: true,
-    as: "url",
-  }),
-) as string[]).slice();
+function normalizeAssetUrl(value: unknown): string | null {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const maybeDefault = (value as { default?: unknown }).default;
+    if (typeof maybeDefault === "string") return maybeDefault;
+  }
+  return null;
+}
 
-const floorPlan550Images = (Object.values(
-  import.meta.glob("../../public/alkhlaif-*-floor-550.jpg", {
-    eager: true,
-    as: "url",
-  }),
-) as string[]).slice();
+function globToUrls(pattern: string): string[] {
+  return Object.values(import.meta.glob(pattern, { eager: true, query: "?url", import: "default" }))
+    .map((entry) => normalizeAssetUrl(entry))
+    .filter((entry): entry is string => Boolean(entry));
+}
+
+const floorPlan8000Images = globToUrls("../../public/alkhlaif-*-floor.jpg").slice();
+
+const floorPlan550Images = globToUrls("../../public/alkhlaif-*-floor-550.jpg").slice();
 
 // Decode filenames from Vite asset URLs so we can rank and describe images.
 
@@ -135,12 +140,7 @@ floorPlan550Images.sort((a, b) => {
   return a.localeCompare(b);
 });
 
-const beds8000Images = (Object.values(
-  import.meta.glob("../../public/*.jpeg", {
-    eager: true,
-    as: "url",
-  }),
-) as string[])
+const beds8000Images = globToUrls("../../public/*.jpeg")
   .filter((url) => {
     const fileName = getDecodedFileName(url).toLowerCase();
     return /^\d+\.jpeg$/.test(fileName) || fileName.startsWith("whatsapp image");
