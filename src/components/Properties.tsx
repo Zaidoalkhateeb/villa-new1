@@ -406,7 +406,7 @@ export default function Properties() {
           description="A premium standalone villa with four levels, double-height living spaces, central air conditioning, and underfloor heating. Experience the pinnacle of architectural excellence."
           badgeLeft="READY TO VIEW"
           badgeRight="PRICE ON REQUEST"
-          stats={["800 m²", "900 m²", "6 Beds", "9 Baths"]}
+          stats={["800 m²", "900 m²", "5 Beds", "8 Baths"]}
           ctaText="View Details "
           onOpenLightbox={(images, startIndex = 0) =>
             (setIsCardFlipped(false), setLightbox({ images, index: startIndex }))
@@ -424,7 +424,7 @@ export default function Properties() {
           description="A refined two-floor villa designed for elegant family living with premium finishes, thoughtful functionality, and seamless indoor-outdoor flow."
           badgeLeft="READY TO VIEW"
           badgeRight="PRICE ON REQUEST"
-          stats={["550 m²", "900 m²", "5 Beds", "7 Baths"]}
+          stats={["550 m²", "900 m²", "4 Beds", "6 Baths"]}
           ctaText="View Details "
           onOpenLightbox={(images, startIndex = 0) =>
             (setIsCardFlipped(false), setLightbox({ images, index: startIndex }))

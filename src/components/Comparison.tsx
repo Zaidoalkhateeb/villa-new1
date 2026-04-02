@@ -4,7 +4,7 @@ export default function Comparison() {
    * Data is kept inline for easy edits by non-devs.
    */
   const rows = [
-    ["Floor Area", "800 m²", "550 m²"],
+    ["Home Area", "800 m²", "550 m²"],
     ["Plot Size (Land )", "900 m²", "900 m²"],
     ["Floors", "4", "2"],
     ["Master Bedrooms", "5", "4"],
