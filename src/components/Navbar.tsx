@@ -66,6 +66,11 @@ export default function Navbar() {
             src="/JAMIL-KHLAIF-logo-final-480x139.png"
             alt="Jamil Khalif Luxury Villas"
             className="h-10 sm:h-11 w-auto transition-opacity duration-200 group-hover:opacity-90"
+            decoding="async"
+            fetchPriority="high"
+            width={480}
+            height={139}
+            draggable={false}
             onError={() => setLogoImageOk(false)}
           />
         ) : (

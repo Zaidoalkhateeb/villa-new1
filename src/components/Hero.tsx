@@ -63,15 +63,21 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0">
         {prefersReducedMotion ? (
-          <img
-            src="/hero-bg.png"
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-            draggable={false}
-          />
+          <picture className="absolute inset-0">
+            <source type="image/webp" srcSet="/hero-bg.webp" />
+            <img
+              src="/hero-bg.png"
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              draggable={false}
+              width={1920}
+              height={1080}
+            />
+          </picture>
         ) : (
           <video
             ref={videoRef}
@@ -80,9 +86,10 @@ export default function Hero() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
             onPlay={() => setAutoplayBlocked(false)}
+            poster="/hero-bg.webp"
           >
             <source src={heroVideoSrc} type="video/mp4" />
             <source src={heroVideoFallbackSrc} type="video/mp4" />
@@ -102,6 +109,11 @@ export default function Hero() {
           alt="Jamil Khalif"
           className="w-72 sm:w-[420px] md:w-[520px] h-auto mb-8 drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]"
           loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          width={520}
+          height={151}
+          draggable={false}
         />
 
        

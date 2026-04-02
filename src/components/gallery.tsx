@@ -5,8 +5,11 @@ type LightboxImage = { src: string; alt: string };
 
 const images: LightboxImage[] = Array.from({ length: 16 }, (_, index) => {
   const n = index + 1;
-  const fileName = `${String(n).padStart(2, "0")}.png`;
-  return { src: `/${fileName}`, alt: `Villa photo ${n}` };
+  const baseName = String(n).padStart(2, "0");
+  return {
+    src: `/${baseName}.png`,
+    alt: `Villa photo ${n}`,
+  };
 });
 
 /**
@@ -76,11 +79,23 @@ export default function Gallery() {
             key={image.src}
             className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 aspect-[4/3]"
           >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
+            <picture className="block w-full h-full">
+              <source
+                type="image/webp"
+                srcSet={image.src.replace(/\.png$/i, ".webp")}
+              />
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                width={1200}
+                height={900}
+                draggable={false}
+              />
+            </picture>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
             <button
               type="button"
@@ -135,11 +150,23 @@ export default function Gallery() {
               <ChevronRight size={20} />
             </button>
 
-            <img
-              src={images[lightboxIndex].src}
-              alt={images[lightboxIndex].alt}
-              className="w-full max-h-[80vh] object-contain rounded-xl border border-white/10 bg-black"
-            />
+            <picture className="block w-full">
+              <source
+                type="image/webp"
+                srcSet={images[lightboxIndex].src.replace(/\.png$/i, ".webp")}
+              />
+              <img
+                src={images[lightboxIndex].src}
+                alt={images[lightboxIndex].alt}
+                className="w-full max-h-[80vh] object-contain rounded-xl border border-white/10 bg-black"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                width={2400}
+                height={1800}
+                draggable={false}
+              />
+            </picture>
           </div>
         </div>
       )}

@@ -45,6 +45,11 @@ function MemberCard({ member, className = "" }: { member: TeamMember; className?
             alt={member.name}
             className="h-full w-full object-cover"
             loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            width={800}
+            height={800}
+            draggable={false}
           />
         </div>
       )}

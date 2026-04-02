@@ -218,6 +218,11 @@ function PropertyCard(props: {
             alt={activeImageAlt}
             className="w-full h-56 sm:h-72 object-cover cursor-zoom-in"
             loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            width={1200}
+            height={800}
+            draggable={false}
           />
 
           {/* Enlarge icon (center) */}
@@ -594,6 +599,10 @@ export default function Properties() {
                           src={lightbox.images[lightbox.index]?.src}
                           alt={lightbox.images[lightbox.index]?.alt}
                           className="w-full max-h-[80vh] object-contain rounded-lg"
+                          loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
+                          draggable={false}
                         />
                       </div>
 
