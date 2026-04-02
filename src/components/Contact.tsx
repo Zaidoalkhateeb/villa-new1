@@ -87,16 +87,16 @@ export default function Contact() {
 
           <div className="mt-10 space-y-4">
             <a
-              href="tel:+96265931620"
+              href="tel:0796033600"
               className="flex items-center gap-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 px-5 py-4"
-              aria-label="Call +962 6 593 1620"
+              aria-label="Call +962 79 603 3600"
             >
               <div className="grid place-items-center h-11 w-11 rounded-xl bg-yellow-500/10 text-yellow-600 border border-yellow-500/20">
                 <Phone size={18} />
               </div>
               <div>
                 <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">PHONE</p>
-                <p className="font-medium">+962 6 593 1620</p>
+                <p className="font-medium">+962 79 603 3600</p>
               </div>
             </a>
 
@@ -133,7 +133,7 @@ export default function Contact() {
               <div>
                 <p className="text-[10px] tracking-[0.3em] text-neutral-500 dark:text-neutral-400">OFFICE</p>
                 <p className="font-medium leading-snug">
-                  7th Circle – Royal Jordanian Airlines Complex, 3rd Floor, Office No. 313
+                  31°49'08.6"N 35°55'58.5"E
                 </p>
               </div>
             </div>

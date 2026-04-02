@@ -109,15 +109,15 @@ export default function Navbar() {
 
         {/* Phone */}
         <a
-          href="tel:+96265931620"
-          aria-label="Call +962 6 593 1620"
+          href="tel:0796033600"
+          aria-label="Call +962 79 603 3600"
           className={
             "group flex items-center gap-2 text-sm cursor-pointer transition hover:text-yellow-500 hover:drop-shadow-[0_0_6px_rgba(234,179,8,0.45)] " +
             (isScrolled ? "text-neutral-700 dark:text-neutral-200" : "text-white/85")
           }
         >
         <Phone size={16} className={"transition group-hover:text-yellow-500 " + (isScrolled ? "text-neutral-500 dark:text-neutral-300" : "text-white/70")} />
-        <span className="hidden sm:inline">+962 6 593 1620</span>
+        <span className="hidden sm:inline">+962 79 603 3600</span>
         </a>
 
         {/* Inquire Button (FIXED) */}

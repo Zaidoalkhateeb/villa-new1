@@ -14,8 +14,8 @@ export default function Location() {
         {/* MAP */}
         <div className="relative rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[240px] sm:h-[300px] md:h-[460px]">
           <iframe
-            title="Airport Road, Amman"
-            src="https://www.google.com/maps?q=Airport+Road,+Amman&hl=en&z=14&output=embed"
+            title={"31°49'08.6\"N 35°55'58.5\"E"}
+            src="https://www.google.com/maps?q=31%C2%B049%2708.6%22N+35%C2%B055%2758.5%22E&hl=en&z=16&output=embed"
             className="w-full h-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -23,7 +23,7 @@ export default function Location() {
           />
 
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Airport%20Road%2C%20Amman"
+            href="https://www.google.com/maps/search/?api=1&query=31%C2%B049%2708.6%22N%2035%C2%B055%2758.5%22E"
             target="_blank"
             rel="noopener noreferrer"
             className="absolute bottom-3 left-3 rounded-lg border border-black/10 dark:border-white/10 bg-white/90 dark:bg-neutral-900/90 px-3 py-2 text-xs text-neutral-700 dark:text-neutral-200 backdrop-blur hover:bg-white dark:hover:bg-neutral-900 transition"
@@ -49,13 +49,13 @@ export default function Location() {
 
           {/* Title */}
           <h2 className="text-3xl md:text-4xl font-serif mb-5 leading-tight">
-            The Prestige of Airport Road
+            Prime Villa Location
           </h2>
 
           {/* Description */}
           <p className="text-neutral-700 dark:text-neutral-200 mb-5 leading-relaxed">
             Founded in 2011, Al-Khalif Housing develops high-end residential villas
-            designed for elevated living. Based primarily in the Airport Road area,
+            designed for elevated living. Located at 31°49'08.6"N 35°55'58.5"E,
             we’re known for quality, detail, and customer satisfaction — delivering
             lasting value in every home.
           </p>

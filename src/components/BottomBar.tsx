@@ -4,8 +4,8 @@ import { Phone } from "lucide-react";
 
 /** Floating WhatsApp and Phone buttons on the right side of the page. */
 export default function BottomBar() {
-  const phoneNumberDisplay = "+962 6 593 1620";
-  const phoneNumberTel = "+96265931620";
+  const phoneNumberDisplay = "+962 79 603 3600";
+  const phoneNumberTel = "0796033600";
   const whatsappNumber = "962796033600";
 
   return (

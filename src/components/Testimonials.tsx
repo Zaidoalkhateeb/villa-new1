@@ -7,17 +7,17 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     text: "We moved into our villa last spring and haven’t looked back. The craftsmanship in every room is exceptional.",
-    name: "Khalid Al-Rashidi",
+    name: "Fadi Salman",
     role: "Owner, Grand Estate Villa",
   },
   {
     text: "AlKhlaif delivered our dream home on time and on budget. The team was professional and transparent.",
-    name: "Rania Mansour",
+    name: "Mohammed Al mughrabi",
     role: "Homeowner, Elegant Residence",
   },
   {
     text: "As both an investor and homeowner, I’ve seen many developments. AlKhlaif stands apart in quality.",
-    name: "Omar Barakat",
+    name: "Khalid Nasser",
     role: "Investor & Homeowner",
   },
 ];
