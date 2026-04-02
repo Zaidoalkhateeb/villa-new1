@@ -28,10 +28,22 @@ type DetailsState = {
 };
 
 const defaultRoomGallery = [
-  "/gallery-master.png",
-  "/gallery-living.png",
-  "/gallery-kitchen.png",
-  "/living-room-1.jpg",
+  "/01.png",
+  "/02.png",
+  "/03.png",
+  "/04.png",
+  "/05.png",
+  "/06.png",
+  "/07.png",
+  "/08.png",
+  "/09.png",
+  "/10.png",
+  "/11.png",
+  "/12.png",
+  "/13.png",
+  "/14.png",
+  "/15.png",
+  "/16.png",
 ];
 
 const floorPlan8000Images = [
@@ -116,7 +128,7 @@ function getFloorPlanLabel(src: string) {
   if (name.includes("basment") || name.includes("basement")) return "Basement Floor";
   return "Floor Plan";
 }
-const beds8000Images = ["/1.jpeg", "/4.jpeg", "/WhatsApp Image 2026-03-28 at 6.32.49 PM.jpeg"];
+const beds8000Images = defaultRoomGallery;
 
 function PropertyCard(props: {
   title: string;

@@ -3,12 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 
 type LightboxImage = { src: string; alt: string };
 
-const images: LightboxImage[] = [
-  { src: "/gallery-living.png", alt: "Living area" },
-  { src: "/gallery-kitchen.png", alt: "Kitchen" },
-  { src: "/gallery-master.png", alt: "Master bedroom" },
-  { src: "/gallery-pool.png", alt: "Pool" },
-];
+const images: LightboxImage[] = Array.from({ length: 16 }, (_, index) => {
+  const n = index + 1;
+  const fileName = `${String(n).padStart(2, "0")}.png`;
+  return { src: `/${fileName}`, alt: `Villa photo ${n}` };
+});
 
 /**
  * Simple gallery section with a basic lightbox.
@@ -71,95 +70,30 @@ export default function Gallery() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-
-        {/* Large Left Image */}
-        <div className="md:col-span-2">
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[320px] sm:h-[380px] md:h-[520px]">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {images.map((image, index) => (
+          <div
+            key={image.src}
+            className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 aspect-[4/3]"
+          >
             <img
-              src="/gallery-living.png"
-              alt="Living area"
+              src={image.src}
+              alt={image.alt}
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
             <button
               type="button"
-              onClick={() => setLightboxIndex(0)}
+              onClick={() => setLightboxIndex(index)}
               className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition"
-              aria-label="Zoom living area image"
-            >
-              <span className="grid place-items-center h-12 w-12 rounded-full border border-yellow-500/60 bg-black/60 text-yellow-400 backdrop-blur">
-                <ZoomIn size={22} />
-              </span>
-            </button>
-          </div>
-        </div>
-
-        {/* Right Column */}
-        <div className="flex flex-col gap-6">
-
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[200px] sm:h-[230px] md:h-[248px]">
-            <img
-              src="/gallery-kitchen.png"
-              alt="Kitchen"
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
-            <button
-              type="button"
-              onClick={() => setLightboxIndex(1)}
-              className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition"
-              aria-label="Zoom kitchen image"
+              aria-label={`Zoom ${image.alt} image`}
             >
               <span className="grid place-items-center h-11 w-11 rounded-full border border-yellow-500/60 bg-black/60 text-yellow-400 backdrop-blur">
                 <ZoomIn size={20} />
               </span>
             </button>
           </div>
-
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[200px] sm:h-[230px] md:h-[248px]">
-            <img
-              src="/gallery-master.png"
-              alt="Master bedroom"
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
-            <button
-              type="button"
-              onClick={() => setLightboxIndex(2)}
-              className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition"
-              aria-label="Zoom master bedroom image"
-            >
-              <span className="grid place-items-center h-11 w-11 rounded-full border border-yellow-500/60 bg-black/60 text-yellow-400 backdrop-blur">
-                <ZoomIn size={20} />
-              </span>
-            </button>
-          </div>
-
-        </div>
-
-        {/* Bottom Full Image */}
-        <div className="md:col-span-3">
-          <div className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 h-[220px] sm:h-[260px] md:h-[320px]">
-            <img
-              src="/gallery-pool.png"
-              alt="Pool"
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
-            <button
-              type="button"
-              onClick={() => setLightboxIndex(3)}
-              className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition"
-              aria-label="Zoom pool image"
-            >
-              <span className="grid place-items-center h-12 w-12 rounded-full border border-yellow-500/60 bg-black/60 text-yellow-400 backdrop-blur">
-                <ZoomIn size={22} />
-              </span>
-            </button>
-          </div>
-        </div>
-
+        ))}
       </div>
 
       {/* Lightbox */}
